@@ -1,0 +1,535 @@
+{
+  "01": [
+    {
+      "id": "recommended-1-1",
+      "name": "P01_title_art.png",
+      "src": "stickers/P01_title_art.png",
+      "x": 410,
+      "y": 330,
+      "w": 980,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "ok"
+    }
+  ],
+  "02": [],
+  "03": [],
+  "04": [
+    {
+      "id": "recommended-4-1",
+      "name": "P04_title.png",
+      "src": "stickers/P04_title.png",
+      "x": 468,
+      "y": 440,
+      "w": 864,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "ok"
+    }
+  ],
+  "05": [],
+  "06": [
+    {
+      "id": "recommended-6-1",
+      "name": "P06_chapters_art.png",
+      "src": "stickers/P06_chapters_art.png",
+      "x": 690,
+      "y": 460,
+      "w": 420,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "ok"
+    }
+  ],
+  "07": [
+    {
+      "id": "recommended-7-1",
+      "name": "P07_body_ai.png",
+      "src": "stickers/P07_body_ai.png",
+      "x": 790,
+      "y": 1970,
+      "w": 497,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "08": [
+    {
+      "id": "recommended-8-1",
+      "name": "P08_body_ai.png",
+      "src": "stickers/P08_body_ai.png",
+      "x": 250,
+      "y": 1970,
+      "w": 520,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "09": [
+    {
+      "id": "recommended-9-1",
+      "name": "P09_body_ai.png",
+      "src": "stickers/P09_body_ai.png",
+      "x": 790,
+      "y": 1970,
+      "w": 513,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "risky"
+    }
+  ],
+  "10": [
+    {
+      "id": "recommended-10-1",
+      "name": "P10_body_ai.png",
+      "src": "stickers/P10_body_ai.png",
+      "x": 250,
+      "y": 1970,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "11": [
+    {
+      "id": "recommended-11-1",
+      "name": "P11_body_ai.png",
+      "src": "stickers/P11_body_ai.png",
+      "x": 790,
+      "y": 1970,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "12": [
+    {
+      "id": "recommended-12-1",
+      "name": "P12_body_ai.png",
+      "src": "stickers/P12_body_ai.png",
+      "x": 250,
+      "y": 1970,
+      "w": 516,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "13": [
+    {
+      "id": "recommended-13-1",
+      "name": "P13_body_ai.png",
+      "src": "stickers/P13_body_ai.png",
+      "x": 790,
+      "y": 1970,
+      "w": 441,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "14": [
+    {
+      "id": "recommended-14-1",
+      "name": "P14_body_ai.png",
+      "src": "stickers/P14_body_ai.png",
+      "x": 250,
+      "y": 1970,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "15": [
+    {
+      "id": "recommended-15-1",
+      "name": "P15_sentence.png",
+      "src": "stickers/P15_sentence.png",
+      "x": 315,
+      "y": 2020,
+      "w": 760,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "ok"
+    }
+  ],
+  "16": [
+    {
+      "id": "recommended-16-1",
+      "name": "P16_body_ai.png",
+      "src": "stickers/P16_body_ai.png",
+      "x": 250,
+      "y": 1850,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "17": [
+    {
+      "id": "recommended-17-1",
+      "name": "P17_body_ai.png",
+      "src": "stickers/P17_body_ai.png",
+      "x": 790,
+      "y": 1850,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "18": [
+    {
+      "id": "recommended-18-1",
+      "name": "P18_body_ai.png",
+      "src": "stickers/P18_body_ai.png",
+      "x": 250,
+      "y": 1850,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "19": [
+    {
+      "id": "recommended-19-1",
+      "name": "P19_sentence.png",
+      "src": "stickers/P19_sentence.png",
+      "x": 315,
+      "y": 2020,
+      "w": 760,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "ok"
+    }
+  ],
+  "20": [
+    {
+      "id": "recommended-20-1",
+      "name": "P20_body_ai.png",
+      "src": "stickers/P20_body_ai.png",
+      "x": 250,
+      "y": 1850,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "21": [
+    {
+      "id": "recommended-21-1",
+      "name": "P21_sentence.png",
+      "src": "stickers/P21_sentence.png",
+      "x": 315,
+      "y": 2020,
+      "w": 760,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "ok"
+    }
+  ],
+  "22": [
+    {
+      "id": "recommended-22-1",
+      "name": "P22_body_ai.png",
+      "src": "stickers/P22_body_ai.png",
+      "x": 250,
+      "y": 1850,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "23": [
+    {
+      "id": "recommended-23-1",
+      "name": "P23_body_ai.png",
+      "src": "stickers/P23_body_ai.png",
+      "x": 790,
+      "y": 1850,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "24": [
+    {
+      "id": "recommended-24-1",
+      "name": "P24_body_ai.png",
+      "src": "stickers/P24_body_ai.png",
+      "x": 250,
+      "y": 1850,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "25": [
+    {
+      "id": "recommended-25-1",
+      "name": "P25_body_ai.png",
+      "src": "stickers/P25_body_ai.png",
+      "x": 790,
+      "y": 1850,
+      "w": 529,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "26": [
+    {
+      "id": "recommended-26-1",
+      "name": "P26_body_ai.png",
+      "src": "stickers/P26_body_ai.png",
+      "x": 250,
+      "y": 1850,
+      "w": 494,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "27": [
+    {
+      "id": "recommended-27-1",
+      "name": "P27_body_ai.png",
+      "src": "stickers/P27_body_ai.png",
+      "x": 790,
+      "y": 1850,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "28": [
+    {
+      "id": "recommended-28-1",
+      "name": "P28_body_ai.png",
+      "src": "stickers/P28_body_ai.png",
+      "x": 250,
+      "y": 1910,
+      "w": 450,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "risky"
+    }
+  ],
+  "29": [
+    {
+      "id": "recommended-29-1",
+      "name": "P29_body_ai.png",
+      "src": "stickers/P29_body_ai.png",
+      "x": 790,
+      "y": 1910,
+      "w": 455,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "30": [
+    {
+      "id": "recommended-30-1",
+      "name": "P30_body_ai.png",
+      "src": "stickers/P30_body_ai.png",
+      "x": 250,
+      "y": 1910,
+      "w": 434,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "31": [
+    {
+      "id": "recommended-31-1",
+      "name": "P31_body_ai.png",
+      "src": "stickers/P31_body_ai.png",
+      "x": 790,
+      "y": 1910,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "32": [
+    {
+      "id": "recommended-32-1",
+      "name": "P32_label_art.png",
+      "src": "stickers/P32_label_art.png",
+      "x": 1040,
+      "y": 650,
+      "w": 520,
+      "rotate": -2,
+      "opacity": 1,
+      "z": 1,
+      "risk": "ok"
+    },
+    {
+      "id": "recommended-32-2",
+      "name": "P32_body_ai.png",
+      "src": "stickers/P32_body_ai.png",
+      "x": 250,
+      "y": 1910,
+      "w": 430,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 2,
+      "risk": "check"
+    }
+  ],
+  "33": [
+    {
+      "id": "recommended-33-1",
+      "name": "P33_body_ai.png",
+      "src": "stickers/P33_body_ai.png",
+      "x": 790,
+      "y": 1910,
+      "w": 474,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "34": [
+    {
+      "id": "recommended-34-1",
+      "name": "P34_body_ai.png",
+      "src": "stickers/P34_body_ai.png",
+      "x": 250,
+      "y": 1910,
+      "w": 557,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "35": [
+    {
+      "id": "recommended-35-1",
+      "name": "P35_body_ai.png",
+      "src": "stickers/P35_body_ai.png",
+      "x": 790,
+      "y": 1910,
+      "w": 536,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "36": [
+    {
+      "id": "recommended-36-1",
+      "name": "P36_body_ai.png",
+      "src": "stickers/P36_body_ai.png",
+      "x": 250,
+      "y": 1910,
+      "w": 528,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "check"
+    }
+  ],
+  "37": [
+    {
+      "id": "recommended-37-1",
+      "name": "P37_heading.png",
+      "src": "stickers/P37_heading.png",
+      "x": 260,
+      "y": 360,
+      "w": 760,
+      "rotate": -1.5,
+      "opacity": 1,
+      "z": 1,
+      "risk": "ok"
+    }
+  ],
+  "38": [
+    {
+      "id": "recommended-38-1",
+      "name": "P38_questions.png",
+      "src": "stickers/P38_questions.png",
+      "x": 260,
+      "y": 540,
+      "w": 540,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "ok"
+    }
+  ],
+  "39": [
+    {
+      "id": "recommended-39-1",
+      "name": "P39_material_labels.png",
+      "src": "stickers/P39_material_labels.png",
+      "x": 260,
+      "y": 420,
+      "w": 650,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "ok"
+    }
+  ],
+  "40": [
+    {
+      "id": "recommended-40-1",
+      "name": "P40_backcopy.png",
+      "src": "stickers/P40_backcopy.png",
+      "x": 472,
+      "y": 1860,
+      "w": 855,
+      "rotate": 0,
+      "opacity": 1,
+      "z": 1,
+      "risk": "ok"
+    }
+  ]
+}

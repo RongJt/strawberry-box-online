@@ -1,0 +1,306 @@
+[
+  {
+    "name": "P01_title_art.png",
+    "label": "P01 ????",
+    "src": "stickers/P01_title_art.png",
+    "page": 1,
+    "category": "title",
+    "risk": "ok"
+  },
+  {
+    "name": "P04_title.png",
+    "label": "P04 ????",
+    "src": "stickers/P04_title.png",
+    "page": 4,
+    "category": "title",
+    "risk": "ok"
+  },
+  {
+    "name": "P06_chapters_art.png",
+    "label": "P06 ?????",
+    "src": "stickers/P06_chapters_art.png",
+    "page": 6,
+    "category": "chapter",
+    "risk": "ok"
+  },
+  {
+    "name": "P15_sentence.png",
+    "label": "P15 ??",
+    "src": "stickers/P15_sentence.png",
+    "page": 15,
+    "category": "body",
+    "risk": "ok"
+  },
+  {
+    "name": "P19_sentence.png",
+    "label": "P19 ??",
+    "src": "stickers/P19_sentence.png",
+    "page": 19,
+    "category": "body",
+    "risk": "ok"
+  },
+  {
+    "name": "P21_sentence.png",
+    "label": "P21 ??",
+    "src": "stickers/P21_sentence.png",
+    "page": 21,
+    "category": "body",
+    "risk": "ok"
+  },
+  {
+    "name": "P32_label_art.png",
+    "label": "P32 ??????",
+    "src": "stickers/P32_label_art.png",
+    "page": 32,
+    "category": "label",
+    "risk": "ok"
+  },
+  {
+    "name": "P37_heading.png",
+    "label": "P37 ????",
+    "src": "stickers/P37_heading.png",
+    "page": 37,
+    "category": "heading",
+    "risk": "ok"
+  },
+  {
+    "name": "P38_questions.png",
+    "label": "P38 ??????",
+    "src": "stickers/P38_questions.png",
+    "page": 38,
+    "category": "question",
+    "risk": "ok"
+  },
+  {
+    "name": "P39_material_labels.png",
+    "label": "P39 ??????",
+    "src": "stickers/P39_material_labels.png",
+    "page": 39,
+    "category": "material",
+    "risk": "ok"
+  },
+  {
+    "name": "P40_backcopy.png",
+    "label": "P40 ????",
+    "src": "stickers/P40_backcopy.png",
+    "page": 40,
+    "category": "backcopy",
+    "risk": "ok"
+  },
+  {
+    "name": "P07_body_ai.png",
+    "label": "P07 AI??",
+    "src": "stickers/P07_body_ai.png",
+    "page": 7,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P08_body_ai.png",
+    "label": "P08 AI??",
+    "src": "stickers/P08_body_ai.png",
+    "page": 8,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P09_body_ai.png",
+    "label": "P09 AI??",
+    "src": "stickers/P09_body_ai.png",
+    "page": 9,
+    "category": "body",
+    "risk": "risky"
+  },
+  {
+    "name": "P10_body_ai.png",
+    "label": "P10 AI??",
+    "src": "stickers/P10_body_ai.png",
+    "page": 10,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P11_body_ai.png",
+    "label": "P11 AI??",
+    "src": "stickers/P11_body_ai.png",
+    "page": 11,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P12_body_ai.png",
+    "label": "P12 AI??",
+    "src": "stickers/P12_body_ai.png",
+    "page": 12,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P13_body_ai.png",
+    "label": "P13 AI??",
+    "src": "stickers/P13_body_ai.png",
+    "page": 13,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P14_body_ai.png",
+    "label": "P14 AI??",
+    "src": "stickers/P14_body_ai.png",
+    "page": 14,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P16_body_ai.png",
+    "label": "P16 AI??",
+    "src": "stickers/P16_body_ai.png",
+    "page": 16,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P17_body_ai.png",
+    "label": "P17 AI??",
+    "src": "stickers/P17_body_ai.png",
+    "page": 17,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P18_body_ai.png",
+    "label": "P18 AI??",
+    "src": "stickers/P18_body_ai.png",
+    "page": 18,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P20_body_ai.png",
+    "label": "P20 AI??",
+    "src": "stickers/P20_body_ai.png",
+    "page": 20,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P22_body_ai.png",
+    "label": "P22 AI??",
+    "src": "stickers/P22_body_ai.png",
+    "page": 22,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P23_body_ai.png",
+    "label": "P23 AI??",
+    "src": "stickers/P23_body_ai.png",
+    "page": 23,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P24_body_ai.png",
+    "label": "P24 AI??",
+    "src": "stickers/P24_body_ai.png",
+    "page": 24,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P25_body_ai.png",
+    "label": "P25 AI??",
+    "src": "stickers/P25_body_ai.png",
+    "page": 25,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P26_body_ai.png",
+    "label": "P26 AI??",
+    "src": "stickers/P26_body_ai.png",
+    "page": 26,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P27_body_ai.png",
+    "label": "P27 AI??",
+    "src": "stickers/P27_body_ai.png",
+    "page": 27,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P28_body_ai.png",
+    "label": "P28 AI??",
+    "src": "stickers/P28_body_ai.png",
+    "page": 28,
+    "category": "body",
+    "risk": "risky"
+  },
+  {
+    "name": "P29_body_ai.png",
+    "label": "P29 AI??",
+    "src": "stickers/P29_body_ai.png",
+    "page": 29,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P30_body_ai.png",
+    "label": "P30 AI??",
+    "src": "stickers/P30_body_ai.png",
+    "page": 30,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P31_body_ai.png",
+    "label": "P31 AI??",
+    "src": "stickers/P31_body_ai.png",
+    "page": 31,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P32_body_ai.png",
+    "label": "P32 AI??",
+    "src": "stickers/P32_body_ai.png",
+    "page": 32,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P33_body_ai.png",
+    "label": "P33 AI??",
+    "src": "stickers/P33_body_ai.png",
+    "page": 33,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P34_body_ai.png",
+    "label": "P34 AI??",
+    "src": "stickers/P34_body_ai.png",
+    "page": 34,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P35_body_ai.png",
+    "label": "P35 AI??",
+    "src": "stickers/P35_body_ai.png",
+    "page": 35,
+    "category": "body",
+    "risk": "check"
+  },
+  {
+    "name": "P36_body_ai.png",
+    "label": "P36 AI??",
+    "src": "stickers/P36_body_ai.png",
+    "page": 36,
+    "category": "body",
+    "risk": "check"
+  }
+]

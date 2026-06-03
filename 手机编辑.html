@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>草莓小偷与快递盒 手机贴字</title>
+  <style>
+    :root {
+      --paper: #efe9dd;
+      --panel: #faf6ec;
+      --ink: #302a24;
+      --muted: #756b5f;
+      --line: #d9d0c2;
+      --accent: #647458;
+      --warn: #a54a35;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      padding: 10px;
+      background: rgba(250, 246, 236, .96);
+      border-bottom: 1px solid var(--line);
+    }
+    .bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .bar.wide {
+      grid-template-columns: 1fr 1fr 1fr;
+      margin-top: 8px;
+    }
+    button, select, input, textarea {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fffdf8;
+      color: var(--ink);
+      font: inherit;
+      font-size: 15px;
+      padding: 8px 10px;
+    }
+    button {
+      cursor: pointer;
+      background: #fff9ef;
+    }
+    button.primary {
+      color: #fff;
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    button.danger {
+      color: #7d3428;
+      background: #f7ece6;
+    }
+    main {
+      padding: 10px;
+    }
+    .stage-card {
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #f8f3e8;
+      box-shadow: 0 8px 24px rgba(48, 42, 36, .16);
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #fffaf0;
+      touch-action: none;
+    }
+    section {
+      margin-top: 12px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+    }
+    h2 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+    p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .row4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .status {
+      min-height: 22px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <select id="pageSelect"></select>
+      <button id="loadStarter">载入初始布局</button>
+    </div>
+    <div class="bar wide">
+      <button id="prevPage">上一页</button>
+      <button id="nextPage">下一页</button>
+      <button id="exportCurrent" class="primary">导出本页</button>
+    </div>
+    <div class="status" id="statusText"></div>
+  </header>
+
+  <main>
+    <div class="stage-card">
+      <canvas id="canvas" width="1800" height="2700"></canvas>
+    </div>
+
+    <section>
+      <h2>添加贴片</h2>
+      <p>选择本页贴片后添加；没有合适文字时用下面的补字。</p>
+      <select id="stickerSelect"></select>
+      <div class="row">
+        <button id="addSticker">添加贴片</button>
+        <button id="addRecommended">本页推荐</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>补字</h2>
+      <textarea id="customText" placeholder="输入要补充的文字"></textarea>
+      <div class="row">
+        <select id="customFont">
+          <option value="KaiTi, STKaiti, serif">楷体 / 手写感</option>
+          <option value='Microsoft YaHei, "Noto Sans SC", sans-serif'>雅黑 / 清晰正文</option>
+          <option value='SimSun, "Songti SC", serif'>宋体 / 书页感</option>
+          <option value='FangSong, STFangsong, serif'>仿宋 / 注释感</option>
+        </select>
+        <input id="customColor" type="color" value="#3a3028">
+      </div>
+      <div class="row">
+        <input id="customSize" type="number" min="24" max="160" value="54">
+        <button id="addText" class="primary">添加文字</button>
+      </div>
+    </section>
+
+    <section id="selectedPanel">
+      <h2>选中项</h2>
+      <p id="selectedInfo">未选中。点画面里的贴片或文字即可选中。</p>
+      <label>宽度</label>
+      <input id="widthRange" type="range" min="80" max="1200" step="5">
+      <label>旋转</label>
+      <input id="rotateRange" type="range" min="-18" max="18" step="0.5">
+      <label>透明度</label>
+      <input id="opacityRange" type="range" min="0.25" max="1" step="0.01">
+      <div id="textEdit" class="hidden">
+        <label>修改文字</label>
+        <textarea id="selectedText"></textarea>
+      </div>
+      <div id="cropEdit">
+        <label>裁剪贴片</label>
+        <div class="row">
+          <input id="cropLeft" type="range" min="0" max="80" value="0">
+          <input id="cropRight" type="range" min="0" max="80" value="0">
+        </div>
+        <div class="row">
+          <input id="cropTop" type="range" min="0" max="80" value="0">
+          <input id="cropBottom" type="range" min="0" max="80" value="0">
+        </div>
+      </div>
+      <div class="row4">
+        <button id="upBtn">上</button>
+        <button id="downBtn">下</button>
+        <button id="leftBtn">左</button>
+        <button id="rightBtn">右</button>
+      </div>
+      <div class="row">
+        <button id="duplicateBtn">复制</button>
+        <button id="deleteBtn" class="danger">删除</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>全部导出</h2>
+      <p>导出为 PNG，无损画质；ZIP 会附带当前布局 JSON。</p>
+      <div class="row">
+        <button id="exportReturn" class="primary">导出回传文件</button>
+        <button id="importReturn">导入回传文件</button>
+      </div>
+      <input id="returnFile" type="file" accept="application/json,.json" hidden>
+      <button id="exportZip" class="primary">导出 40 页 ZIP</button>
+    </section>
+  </main>
+
+  <script>
+    const BASE_W = 1800;
+    const BASE_H = 2700;
+    const STORE_KEY = 'strawberry-box-manual-text-layout-v1';
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const pageSelect = document.getElementById('pageSelect');
+    const stickerSelect = document.getElementById('stickerSelect');
+    const statusText = document.getElementById('statusText');
+    const selectedInfo = document.getElementById('selectedInfo');
+    const widthRange = document.getElementById('widthRange');
+    const rotateRange = document.getElementById('rotateRange');
+    const opacityRange = document.getElementById('opacityRange');
+    const cropEdit = document.getElementById('cropEdit');
+    const textEdit = document.getElementById('textEdit');
+    const selectedText = document.getElementById('selectedText');
+    const cropLeft = document.getElementById('cropLeft');
+    const cropRight = document.getElementById('cropRight');
+    const cropTop = document.getElementById('cropTop');
+    const cropBottom = document.getElementById('cropBottom');
+    let pages = [];
+    let stickers = [];
+    let currentPage = 1;
+    let selectedId = null;
+    let dragging = null;
+    let layouts = JSON.parse(localStorage.getItem(STORE_KEY) || '{}');
+    const imageCache = new Map();
+
+    function key(page = currentPage) { return String(page).padStart(2, '0'); }
+    function items() {
+      const k = key();
+      if (!layouts[k]) layouts[k] = [];
+      return layouts[k];
+    }
+    function save() { localStorage.setItem(STORE_KEY, JSON.stringify(layouts)); }
+    function status(text) { statusText.textContent = text || ''; }
+    function selectedItem() { return items().find(item => item.id === selectedId); }
+
+    async function loadImage(src) {
+      if (imageCache.has(src)) return imageCache.get(src);
+      const img = new Image();
+      img.src = src;
+      await img.decode();
+      imageCache.set(src, img);
+      return img;
+    }
+
+    async function drawPage(pageNumber = currentPage, targetCtx = ctx, showSelection = targetCtx === ctx) {
+      targetCtx.clearRect(0, 0, BASE_W, BASE_H);
+      const bg = await loadImage(`pages/${key(pageNumber)}.png`);
+      targetCtx.drawImage(bg, 0, 0, BASE_W, BASE_H);
+      const list = (layouts[key(pageNumber)] || []).slice().sort((a, b) => a.z - b.z);
+      for (const item of list) {
+        if (item.type === 'text') drawText(targetCtx, item);
+        else drawImageItem(targetCtx, item, await loadImage(item.src));
+      }
+      if (showSelection) {
+        drawSelection(targetCtx);
+        syncControls();
+      }
+    }
+
+    function drawImageItem(targetCtx, item, img) {
+      const crop = item.crop || {};
+      const sx = img.naturalWidth * (crop.left || 0) / 100;
+      const sy = img.naturalHeight * (crop.top || 0) / 100;
+      const sw = img.naturalWidth * (100 - (crop.left || 0) - (crop.right || 0)) / 100;
+      const sh = img.naturalHeight * (100 - (crop.top || 0) - (crop.bottom || 0)) / 100;
+      if (sw <= 0 || sh <= 0) return;
+      const h = item.w * sh / sw;
+      targetCtx.save();
+      targetCtx.globalAlpha = item.opacity ?? 1;
+      targetCtx.translate(item.x + item.w / 2, item.y + h / 2);
+      targetCtx.rotate((item.rotate || 0) * Math.PI / 180);
+      targetCtx.drawImage(img, sx, sy, sw, sh, -item.w / 2, -h / 2, item.w, h);
+      targetCtx.restore();
+    }
+
+    function drawText(targetCtx, item) {
+      const size = Number(item.fontSize) || 54;
+      const lineHeight = size * 1.35;
+      targetCtx.save();
+      targetCtx.globalAlpha = item.opacity ?? 1;
+      targetCtx.translate(item.x + item.w / 2, item.y);
+      targetCtx.rotate((item.rotate || 0) * Math.PI / 180);
+      targetCtx.font = `${size}px ${item.fontFamily || 'Microsoft YaHei, sans-serif'}`;
+      targetCtx.fillStyle = item.color || '#3a3028';
+      targetCtx.textBaseline = 'top';
+      wrapText(targetCtx, item.text || '', item.w).forEach((line, i) => {
+        targetCtx.fillText(line, -item.w / 2, i * lineHeight);
+      });
+      targetCtx.restore();
+    }
+
+    function wrapText(targetCtx, text, maxWidth) {
+      const out = [];
+      text.split('\n').forEach(raw => {
+        let line = '';
+        Array.from(raw).forEach(ch => {
+          const test = line + ch;
+          if (line && targetCtx.measureText(test).width > maxWidth) {
+            out.push(line);
+            line = ch;
+          } else line = test;
+        });
+        out.push(line);
+      });
+      return out;
+    }
+
+    function itemBox(item) {
+      if (item.type === 'text') {
+        return { x: item.x, y: item.y, w: item.w, h: (item.fontSize || 54) * 1.5 * Math.max(1, (item.text || '').split('\n').length) };
+      }
+      return { x: item.x, y: item.y, w: item.w, h: Math.max(80, item.w * 0.25) };
+    }
+
+    function drawSelection(targetCtx) {
+      const item = selectedItem();
+      if (!item) return;
+      const b = itemBox(item);
+      targetCtx.save();
+      targetCtx.strokeStyle = '#647458';
+      targetCtx.lineWidth = 6;
+      targetCtx.setLineDash([18, 14]);
+      targetCtx.strokeRect(b.x, b.y, b.w, b.h);
+      targetCtx.restore();
+    }
+
+    function syncControls() {
+      const item = selectedItem();
+      selectedInfo.textContent = item ? `${item.name || '对象'} · X ${Math.round(item.x)} / Y ${Math.round(item.y)}` : '未选中。点画面里的贴片或文字即可选中。';
+      if (!item) return;
+      widthRange.value = item.w;
+      rotateRange.value = item.rotate || 0;
+      opacityRange.value = item.opacity ?? 1;
+      textEdit.classList.toggle('hidden', item.type !== 'text');
+      cropEdit.classList.toggle('hidden', item.type === 'text');
+      selectedText.value = item.text || '';
+      const crop = item.crop || {};
+      cropLeft.value = crop.left || 0;
+      cropRight.value = crop.right || 0;
+      cropTop.value = crop.top || 0;
+      cropBottom.value = crop.bottom || 0;
+    }
+
+    function pagePoint(event) {
+      const rect = canvas.getBoundingClientRect();
+      return { x: (event.clientX - rect.left) * BASE_W / rect.width, y: (event.clientY - rect.top) * BASE_H / rect.height };
+    }
+
+    canvas.addEventListener('pointerdown', event => {
+      const p = pagePoint(event);
+      const list = items().slice().sort((a, b) => b.z - a.z);
+      selectedId = null;
+      for (const item of list) {
+        const b = itemBox(item);
+        if (p.x >= b.x && p.x <= b.x + b.w && p.y >= b.y && p.y <= b.y + b.h) {
+          selectedId = item.id;
+          dragging = { id: item.id, dx: p.x - item.x, dy: p.y - item.y };
+          break;
+        }
+      }
+      drawPage();
+    });
+    canvas.addEventListener('pointermove', event => {
+      if (!dragging) return;
+      const item = selectedItem();
+      if (!item) return;
+      const p = pagePoint(event);
+      item.x = Math.round(p.x - dragging.dx);
+      item.y = Math.round(p.y - dragging.dy);
+      save();
+      drawPage();
+    });
+    window.addEventListener('pointerup', () => dragging = null);
+
+    async function addSticker() {
+      const sticker = stickers.find(s => s.name === stickerSelect.value);
+      if (!sticker) return;
+      const img = await loadImage(sticker.src);
+      const item = {
+        id: `mobile-${Date.now()}`,
+        name: sticker.name,
+        src: sticker.src,
+        x: 320,
+        y: 1850,
+        w: Math.min(760, Math.max(360, img.naturalWidth * .62)),
+        rotate: 0,
+        opacity: 1,
+        z: items().length + 1,
+        risk: sticker.risk || 'ok',
+        crop: { left: 0, right: 0, top: 0, bottom: 0 }
+      };
+      items().push(item);
+      selectedId = item.id;
+      save();
+      drawPage();
+    }
+
+    function addText() {
+      const text = document.getElementById('customText').value.trim();
+      if (!text) return status('请先输入文字。');
+      const item = {
+        id: `text-${Date.now()}`,
+        type: 'text',
+        name: '自定义文字',
+        text,
+        fontFamily: document.getElementById('customFont').value,
+        fontSize: Number(document.getElementById('customSize').value) || 54,
+        color: document.getElementById('customColor').value,
+        x: 320,
+        y: 1880,
+        w: 680,
+        rotate: 0,
+        opacity: 1,
+        z: items().length + 1,
+        risk: 'manual'
+      };
+      items().push(item);
+      selectedId = item.id;
+      save();
+      drawPage();
+    }
+
+    async function addRecommended() {
+      const pageStickers = stickers.filter(s => Number(s.page) === currentPage);
+      for (const sticker of pageStickers) {
+        stickerSelect.value = sticker.name;
+        await addSticker();
+      }
+      status(`P${key()} 已添加推荐贴片。`);
+    }
+
+    async function loadStarter() {
+      if (!confirm('载入推荐初始布局？这会覆盖当前保存的位置。')) return;
+      layouts = await fetch('starter_recommended_layout.json').then(r => r.json());
+      selectedId = null;
+      save();
+      drawPage();
+    }
+
+    function updateSelected(mutator) {
+      const item = selectedItem();
+      if (!item) return;
+      mutator(item);
+      save();
+      drawPage();
+    }
+
+    async function exportCurrent() {
+      const out = document.createElement('canvas');
+      out.width = BASE_W;
+      out.height = BASE_H;
+      await drawPage(currentPage, out.getContext('2d'), false);
+      const a = document.createElement('a');
+      a.href = out.toDataURL('image/png');
+      a.download = `P${key()}_manual_text.png`;
+      a.click();
+      drawPage();
+    }
+
+    async function exportZip() {
+      status('正在生成 40 页 ZIP...');
+      const files = [];
+      for (const page of pages) {
+        const out = document.createElement('canvas');
+        out.width = BASE_W;
+        out.height = BASE_H;
+        await drawPage(page.page, out.getContext('2d'), false);
+        const blob = await new Promise(resolve => out.toBlob(resolve, 'image/png'));
+        files.push({ name: `P${key(page.page)}_manual_text.png`, data: new Uint8Array(await blob.arrayBuffer()) });
+        status(`正在打包 P${key(page.page)} / P40`);
+      }
+      files.push({ name: 'strawberry_box_manual_text_layout.json', data: new TextEncoder().encode(JSON.stringify(layouts, null, 2)) });
+      const blob = createStoredZip(files);
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'strawberry_box_manual_text_pages.zip';
+      a.click();
+      URL.revokeObjectURL(a.href);
+      status('ZIP 已生成。');
+      drawPage();
+    }
+
+    async function exportReturnLayout() {
+      const payload = {
+        project: '草莓小偷与快递盒',
+        type: 'manual_text_layout',
+        exportedAt: new Date().toISOString(),
+        pageCount: 40,
+        layouts
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const fileName = `草莓小偷与快递盒_回传布局_${new Date().toISOString().slice(0, 10)}.json`;
+      const file = new File([blob], fileName, { type: 'application/json' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: '草莓小偷与快递盒 回传布局' });
+          status('已打开手机分享面板。');
+          return;
+        } catch (error) {
+          status('已取消分享，改为下载回传文件。');
+        }
+      }
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = fileName;
+      a.click();
+      URL.revokeObjectURL(a.href);
+      status('回传布局文件已导出。');
+    }
+
+    function importReturnLayout(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const data = JSON.parse(reader.result);
+          layouts = data.layouts || data;
+          selectedId = null;
+          save();
+          drawPage();
+          status('已导入回传布局。');
+        } catch (error) {
+          status('导入失败：不是有效的布局 JSON。');
+        }
+      };
+      reader.readAsText(file, 'utf-8');
+    }
+
+    function createStoredZip(files) {
+      const encoder = new TextEncoder();
+      const localParts = [];
+      const centralParts = [];
+      let offset = 0;
+      for (const file of files) {
+        const name = encoder.encode(file.name);
+        const crc = crc32(file.data);
+        const local = new Uint8Array(30 + name.length);
+        const lv = new DataView(local.buffer);
+        lv.setUint32(0, 0x04034b50, true);
+        lv.setUint16(4, 20, true);
+        lv.setUint32(14, crc, true);
+        lv.setUint32(18, file.data.length, true);
+        lv.setUint32(22, file.data.length, true);
+        lv.setUint16(26, name.length, true);
+        local.set(name, 30);
+        localParts.push(local, file.data);
+        const central = new Uint8Array(46 + name.length);
+        const cv = new DataView(central.buffer);
+        cv.setUint32(0, 0x02014b50, true);
+        cv.setUint16(4, 20, true);
+        cv.setUint16(6, 20, true);
+        cv.setUint32(16, crc, true);
+        cv.setUint32(20, file.data.length, true);
+        cv.setUint32(24, file.data.length, true);
+        cv.setUint16(28, name.length, true);
+        cv.setUint32(42, offset, true);
+        central.set(name, 46);
+        centralParts.push(central);
+        offset += local.length + file.data.length;
+      }
+      const end = new Uint8Array(22);
+      const ev = new DataView(end.buffer);
+      const centralSize = centralParts.reduce((sum, part) => sum + part.length, 0);
+      ev.setUint32(0, 0x06054b50, true);
+      ev.setUint16(8, files.length, true);
+      ev.setUint16(10, files.length, true);
+      ev.setUint32(12, centralSize, true);
+      ev.setUint32(16, offset, true);
+      return new Blob([...localParts, ...centralParts, end], { type: 'application/zip' });
+    }
+
+    function crc32(bytes) {
+      let crc = -1;
+      for (let i = 0; i < bytes.length; i++) crc = (crc >>> 8) ^ CRC_TABLE[(crc ^ bytes[i]) & 0xff];
+      return (crc ^ -1) >>> 0;
+    }
+    const CRC_TABLE = (() => {
+      const table = new Uint32Array(256);
+      for (let i = 0; i < 256; i++) {
+        let c = i;
+        for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1;
+        table[i] = c >>> 0;
+      }
+      return table;
+    })();
+
+    async function setPage(page) {
+      currentPage = Math.max(1, Math.min(40, Number(page)));
+      pageSelect.value = currentPage;
+      selectedId = null;
+      renderStickerOptions();
+      await drawPage();
+    }
+
+    function renderStickerOptions() {
+      stickerSelect.innerHTML = '';
+      stickers.filter(s => Number(s.page) === currentPage).forEach(sticker => {
+        const opt = document.createElement('option');
+        opt.value = sticker.name;
+        opt.textContent = sticker.name.replace(/\.png$/i, '');
+        stickerSelect.appendChild(opt);
+      });
+    }
+
+    async function init() {
+      pages = await fetch('pages_manifest.json').then(r => r.json());
+      stickers = await fetch('stickers_manifest.json').then(r => r.json());
+      pages.forEach(page => {
+        const opt = document.createElement('option');
+        opt.value = page.page;
+        opt.textContent = `P${key(page.page)}`;
+        pageSelect.appendChild(opt);
+      });
+      renderStickerOptions();
+      await drawPage();
+    }
+
+    pageSelect.addEventListener('change', () => setPage(pageSelect.value));
+    document.getElementById('prevPage').addEventListener('click', () => setPage(currentPage - 1));
+    document.getElementById('nextPage').addEventListener('click', () => setPage(currentPage + 1));
+    document.getElementById('addSticker').addEventListener('click', addSticker);
+    document.getElementById('addRecommended').addEventListener('click', addRecommended);
+    document.getElementById('loadStarter').addEventListener('click', loadStarter);
+    document.getElementById('addText').addEventListener('click', addText);
+    document.getElementById('exportCurrent').addEventListener('click', exportCurrent);
+    document.getElementById('exportZip').addEventListener('click', exportZip);
+    document.getElementById('exportReturn').addEventListener('click', exportReturnLayout);
+    document.getElementById('importReturn').addEventListener('click', () => document.getElementById('returnFile').click());
+    document.getElementById('returnFile').addEventListener('change', event => importReturnLayout(event.target.files[0]));
+    widthRange.addEventListener('input', () => updateSelected(item => item.w = Number(widthRange.value)));
+    rotateRange.addEventListener('input', () => updateSelected(item => item.rotate = Number(rotateRange.value)));
+    opacityRange.addEventListener('input', () => updateSelected(item => item.opacity = Number(opacityRange.value)));
+    selectedText.addEventListener('input', () => updateSelected(item => { if (item.type === 'text') item.text = selectedText.value; }));
+    cropLeft.addEventListener('input', () => updateSelected(item => { item.crop = item.crop || {}; item.crop.left = Number(cropLeft.value); }));
+    cropRight.addEventListener('input', () => updateSelected(item => { item.crop = item.crop || {}; item.crop.right = Number(cropRight.value); }));
+    cropTop.addEventListener('input', () => updateSelected(item => { item.crop = item.crop || {}; item.crop.top = Number(cropTop.value); }));
+    cropBottom.addEventListener('input', () => updateSelected(item => { item.crop = item.crop || {}; item.crop.bottom = Number(cropBottom.value); }));
+    document.getElementById('duplicateBtn').addEventListener('click', () => {
+      const item = selectedItem();
+      if (!item) return;
+      const copy = JSON.parse(JSON.stringify(item));
+      copy.id = `copy-${Date.now()}`;
+      copy.x += 40;
+      copy.y += 40;
+      copy.z = items().length + 1;
+      items().push(copy);
+      selectedId = copy.id;
+      save();
+      drawPage();
+    });
+    document.getElementById('deleteBtn').addEventListener('click', () => {
+      layouts[key()] = items().filter(item => item.id !== selectedId);
+      selectedId = null;
+      save();
+      drawPage();
+    });
+    document.getElementById('upBtn').addEventListener('click', () => updateSelected(item => item.y -= 8));
+    document.getElementById('downBtn').addEventListener('click', () => updateSelected(item => item.y += 8));
+    document.getElementById('leftBtn').addEventListener('click', () => updateSelected(item => item.x -= 8));
+    document.getElementById('rightBtn').addEventListener('click', () => updateSelected(item => item.x += 8));
+
+    init().catch(error => status(`加载失败：${error.message}`));
+  </script>
+</body>
+</html>
